@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Monthsary!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Quicksand&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --coquette-pink: #f7d6e0;
+      --coquette-accent: #e8b6c2;
+      --text-color: #5a4e4d;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: var(--coquette-pink);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .heart-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #ff4d4d;
+      transform: rotate(-45deg);
+      animation: float 6s linear forwards;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #ff4d4d;
+      border-radius: 50%;
+    }
+
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: 10px; top: 0; }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(-45deg); opacity: 0.8; }
+      100% { transform: translateY(-100vh) rotate(-45deg); opacity: 0; }
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: white;
+      box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.7);
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: sparkleFade 1.5s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes sparkleFade {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.9; }
+      100% { transform: scale(0.8); opacity: 0; }
+    }
+
+    .container, .letter-container {
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .polaroid {
+      background: white;
+      padding: 1rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      display: inline-block;
+      transform: rotate(-3deg);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      border: 5px solid #fff;
+      border-radius: 10px;
+      margin: 1rem;
+      cursor: pointer;
+    }
+
+    .polaroid:hover {
+      transform: rotate(0deg) scale(1.05);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .polaroid img {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    h1 {
+      margin-bottom: 1rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      animation: slideDown 1s ease-out;
+    }
+
+    .letter-container {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 70vh;
+    }
+
+    .letter {
+      background: #fff0f5;
+      border: 2px solid #e8b6c2;
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 400px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .letter img {
+      width: 100px;
+      margin-bottom: 1rem;
+    }
+
+    .letter p {
+      font-size: 1.5rem;
+      font-family: 'Playfair Display', serif;
+      color: #d94a6b;
+    }
+
+    .back-btn {
+      margin-top: 1.5rem;
+      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      border: none;
+      background: var(--coquette-accent);
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: #d18a9b;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="heart-background"></div>
+
+  <!-- Photo Container -->
+  <div class="container" id="photoSection">
+    <h1>Happy Monthsary, Baby</h1>
+
+    <!-- Images -->
+    <div class="polaroid"><img src="image/488265186_549857281054124_1451200307251443004_n (1).jpg" alt="Us Together" onclick="showLetter()" /></div>
+    <div class="polaroid"><img src="image/489701494_1385972539495181_5026024398411387587_n.jpg" alt="Another Special Moment" onclick="showLetter()" /></div>
+    <div class="polaroid"><img src="image/490022568_649419444543046_4526862561487815759_n.jpg" alt="Our Forever Journey" onclick="showLetter()" /></div>
+    <div class="polaroid"><img src="image/490566264_988232996425730_43688808826988566_n.jpg" alt="Cherished Memory" onclick="showLetter()" /></div>
+    <div class="polaroid"><img src="image/490993066_3223253494497224_3115307369840896773_n.jpg" alt="Unforgettable Day" onclick="showLetter()" /></div>
+    <div class="polaroid"><img src="image/490993612_1226281862417892_3794520299545517893_n.jpg" alt="Our Love Story" onclick="showLetter()" /></div>
+  </div>
+
+  <!-- Letter Container -->
+  <div class="letter-container" id="letterSection">
+    <div class="letter">
+      <img src="https://cdn-icons-png.flaticon.com/512/10172/10172844.png" alt="Flower" />
+      <p>I LOVE YOU</p>
+      <button class="back-btn" onclick="showPhotos()">Back to Photos</button>
+    </div>
+  </div>
+
+  <!-- Animations -->
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = 4 + Math.random() * 3 + 's';
+      heart.style.opacity = Math.random().toFixed(2);
+      document.querySelector('.heart-background').appendChild(heart);
+      setTimeout(() => heart.remove(), 7000);
+    }
+    setInterval(createHeart, 400);
+
+    function createSparkle() {
+      const sparkle = document.createElement('div');
+      sparkle.classList.add('sparkle');
+      sparkle.style.left = Math.random() * 100 + 'vw';
+      sparkle.style.top = Math.random() * 100 + 'vh';
+      sparkle.style.animationDuration = 1 + Math.random() * 1.5 + 's';
+      document.querySelector('.heart-background').appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 2000);
+    }
+    setInterval(createSparkle, 150);
+
+    function showLetter() {
+      document.getElementById('photoSection').style.display = 'none';
+      document.getElementById('letterSection').style.display = 'flex';
+    }
+
+    function showPhotos() {
+      document.getElementById('letterSection').style.display = 'none';
+      document.getElementById('photoSection').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
